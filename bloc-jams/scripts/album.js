@@ -28,6 +28,21 @@ var albumMarconi = {
      ]
  };
 
+var albumFake = {
+     title: 'The Fakers',
+     artist: 'Fakey mcFakerton',
+     label: 'Li',
+     year: '2017',
+     albumArtUrl: 'assets/images/album_covers/11.png',
+     songs: [
+         { title: ' I don\'t exist', duration: '1:41' },
+         { title: 'Invisible Now', duration: '4:01' },
+         { title: 'Posers', duration: '6:21'},
+         { title: 'Whatever', duration: '3:54' },
+         { title: 'Don\'t talk to me', duration: '21:15'}
+     ]
+ };
+
  var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
@@ -40,11 +55,12 @@ var albumMarconi = {
      return template;
  };
 
+ var albumImage = document.getElementsByClassName('album-cover-art')[0];
  var setCurrentAlbum = function(album) {
      var albumTitle = document.getElementsByClassName('album-view-title')[0];
      var albumArtist = document.getElementsByClassName('album-view-artist')[0];
      var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-     var albumImage = document.getElementsByClassName('album-cover-art')[0];
+     
      var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
     
      albumTitle.firstChild.nodeValue = album.title;
@@ -61,4 +77,16 @@ var albumMarconi = {
  
  window.onload = function() {
      setCurrentAlbum(albumPicasso);
+     
+     var albums = [albumPicasso, albumMarconi, albumFake];
+     var coverView = 1;
+     albumImage.addEventListener("click", function(event){
+     setCurrentAlbum(albums[coverView]);
+     coverView++;
+         if (coverView == albums.length){
+                coverView = 0;
+         }
+       
+     })
+    
  };
