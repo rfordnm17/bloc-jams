@@ -60,17 +60,23 @@ var albumMarconi = {
  };
 
 var findParentByClassName = function(element, className) {
+  if (element.parentElement) {
+      var currentParent = element.parentElement;
+   
+      while (currentParent.className !== className) {
+            currentParent = currentParent.parentElement; 
+        
+            if (currentParent == null) { console.log("No Parent Found With That Class");  return false;  } 
+       }
+        console.log(currentParent.className);
+        return currentParent;
   
-  var currentParent = element.parentElement;
-  while (currentParent.className !== className && currentParent.className !== null) {
-    currentParent = currentParent.parentElement;
-  } 
+  } else { console.log("No Parent Found"); }
   
-  console.log(currentParent.className);
-  return currentParent;
-  
-
 }
+
+
+findParentByClassName(heading, "find-me-too");
 var getSongItem = function(element) {
     switch (element.className) {
         case 'album-song-button':
