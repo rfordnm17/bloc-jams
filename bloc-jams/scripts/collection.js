@@ -28,4 +28,4 @@ $(window).load(function() {
          
          $collectionContainer.append($newThumbnail);
      }
- }
+ });
