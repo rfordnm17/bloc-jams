@@ -177,12 +177,12 @@ var previousSong = function() {
     
 };
 var setCurrentTimeInPlayerBar = function(currentTime){
-    currentTime = filterTimeCode(this.getTime());
+    currentTime = filterTimeCode(currentSoundFile.getTime());
     $('.current-time').html(currentTime);
 };
 
-var setTotalTimeInPlayerBar = function (totalTime){
-    totalTime = filterTimeCode(this.getDuration());
+var setTotalTimeInPlayerBar = function (){
+    var totalTime = filterTimeCode(currentSoundFile.getDuration());
     $('.total-time').html(totalTime);
 };
 var updatePlayerBarSong = function() {
@@ -191,15 +191,18 @@ var updatePlayerBarSong = function() {
     $('.currently-playing .artist-name').text(currentAlbum.artist);
     $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
     $('.main-controls .play-pause').html(playerBarPauseButton);
-    setTotalTimeInPlayerBar();
+    setTotalTimeInPlayerBar;
 };
 var filterTimeCode = function (timeInSeconds){
     
    var time = parseFloat(timeInSeconds);
    var minutes = Math.floor(time / 60);
     var seconds = Math.floor(time % 60);
-    
-    return (minutes + ":" + seconds);
+    var timeFormat;
+    if (seconds < 10){
+        timeFormat = (minutes + ":" + "0" + seconds);
+    } else { timeFormat = (minutes + ":" + seconds);}
+    return timeFormat;
     
     
 };
