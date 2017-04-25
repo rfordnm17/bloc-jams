@@ -123,9 +123,9 @@ var nextSong = function() {
 
     var lastSongNumber = currentlyPlayingSongNumber;
 
-    currentlyPlayingSongNumber = currentSongIndex + 1;
+    setSong(currentSongIndex + 1);
     currentSoundFile.play();
-    currentSongFromAlbum = currentAlbum.songs[currentSongIndex];
+    
 
     updatePlayerBarSong();
 
@@ -147,9 +147,9 @@ var previousSong = function() {
 
     var lastSongNumber = currentlyPlayingSongNumber;
 
-    currentlyPlayingSongNumber = currentSongIndex + 1;
+    setSong(currentSongIndex + 1);
     currentSoundFile.play();
-    currentSongFromAlbum = currentAlbum.songs[currentSongIndex];
+    
 
     updatePlayerBarSong();
 
@@ -171,17 +171,16 @@ var updatePlayerBarSong = function() {
 };
 
 var togglePlayFromPlayerBar = function(){
+    var currentlyPlayingCell = getSongNumberCell(currentlyPlayingSongNumber);
     if (currentSoundFile.isPaused()){
-                var currentlyPlayingCell = getSongNumberCell(currentlyPlayingSongNumber);
-            
-                currentSoundFile.play();
-                $(currentlyPlayingCell).html(pauseButtonTemplate);
-                $playPause.html(playerBarPauseButton);
-            } else {
-                currentSoundFile.pause();
-                $(currentlyPlayingCell).html(playButtonTemplate);
-                $playPause.html(playerBarPlayButton);
-            }
+        currentSoundFile.play();
+        $(currentlyPlayingCell).html(pauseButtonTemplate);
+        $playPause.html(playerBarPauseButton);
+    } else {
+        currentSoundFile.pause();
+        $(currentlyPlayingCell).html(playButtonTemplate);
+        $playPause.html(playerBarPlayButton);
+    }
     
     
 };
